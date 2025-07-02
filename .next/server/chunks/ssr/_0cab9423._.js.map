@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 24, "column": 0}, "map": {"version":3,"sources":["file:///E:/Saas_B2B%20Project/Front/saas-b2b-front/src/app/%5Blocale%5D/page.tsx"],"sourcesContent":["import { useTranslations } from \"next-intl\";\r\nimport Link from \"next/link\";\r\n\r\nexport default function HomePage() {\r\n  const t = useTranslations(\"HomePage\"); // namespace \"Home\" در فایل ترجمه\r\n\r\n  return (\r\n    <main className=\"min-h-screen flex flex-col items-center justify-center text-center px-4\">\r\n      <h1 className=\"text-4xl md:text-5xl font-bold mb-6 text-blue-600\">\r\n        {t(\"title\")}\r\n      </h1>\r\n\r\n      <p className=\"text-lg md:text-xl text-gray-700 max-w-xl mb-8\">\r\n        {t(\"description\")}\r\n      </p>\r\n\r\n      <Link\r\n        href=\"/about\"\r\n        className=\"bg-blue-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-blue-700 transition\"\r\n      >\r\n        {t(\"learnMore\")}\r\n      </Link>\r\n    </main>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;AACA;;;;AAEe,SAAS;IACtB,MAAM,IAAI,CAAA,GAAA,8OAAA,CAAA,kBAAe,AAAD,EAAE,aAAa,iCAAiC;IAExE,qBACE,8OAAC;QAAK,WAAU;;0BACd,8OAAC;gBAAG,WAAU;0BACX,EAAE;;;;;;0BAGL,8OAAC;gBAAE,WAAU;0BACV,EAAE;;;;;;0BAGL,8OAAC,4JAAA,CAAA,UAAI;gBACH,MAAK;gBACL,WAAU;0BAET,EAAE;;;;;;;;;;;;AAIX","debugId":null}}]
+}

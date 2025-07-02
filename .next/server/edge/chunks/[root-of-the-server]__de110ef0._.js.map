@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/middleware.ts"],"sourcesContent":["import createMiddleware from \"next-intl/middleware\";\r\nimport { locales, defaultLocale } from \"./i18n\";\r\n\r\nexport default createMiddleware({\r\n  locales,\r\n  defaultLocale,\r\n  localePrefix: \"as-needed\", // یا 'always' بسته به نیاز\r\n});\r\n\r\nexport const config = {\r\n  matcher: [\"/((?!_next|.*\\\\..*).*)\"], // همه مسیرها به جز فایل‌های استاتیک\r\n};\r\n"],"names":[],"mappings":";;;;AAAA;;;;;;;;uCAGe,CAAA,GAAA,8LAAA,CAAA,UAAgB,AAAD,EAAE;IAC9B;IACA;IACA,cAAc;AAChB;AAEO,MAAM,SAAS;IACpB,SAAS;QAAC;KAAyB;AACrC"}}]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/i18n/routing.ts"],"sourcesContent":["import { defineRouting } from \"next-intl/routing\";\r\n\r\nexport const routing = defineRouting({\r\n  // A list of all locales that are supported\r\n  locales: [\"fa\", \"en\", \"hy\"] as const,\r\n\r\n  // Used when no locale matches\r\n  defaultLocale: \"fa\",\r\n});\r\n"],"names":[],"mappings":";;;AAAA;;AAEO,MAAM,UAAU,CAAA,GAAA,0OAAA,CAAA,gBAAa,AAAD,EAAE;IACnC,2CAA2C;IAC3C,SAAS;QAAC;QAAM;QAAM;KAAK;IAE3B,8BAA8B;IAC9B,eAAe;AACjB"}},
+    {"offset": {"line": 44, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/middleware.ts"],"sourcesContent":["import createMiddleware from \"next-intl/middleware\";\r\nimport { routing } from \"./i18n/routing\";\r\n\r\nexport default createMiddleware(routing);\r\n\r\nexport const config = {\r\n  // Match all pathnames except for\r\n  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`\r\n  // - … the ones containing a dot (e.g. `favicon.ico`)\r\n  matcher: \"/((?!api|trpc|_next|_vercel|.*\\\\..*).*)\",\r\n};\r\n"],"names":[],"mappings":";;;;AAAA;AACA;;;uCAEe,CAAA,GAAA,8LAAA,CAAA,UAAgB,AAAD,EAAE,8HAAA,CAAA,UAAO;AAEhC,MAAM,SAAS;IACpB,iCAAiC;IACjC,iEAAiE;IACjE,qDAAqD;IACrD,SAAS;AACX"}}]
+}
