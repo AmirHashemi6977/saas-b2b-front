@@ -9,5 +9,11 @@
     "title": "Welcome to Our Website",
     "description": "We are a modern platform for project management and team collaboration.",
     "learnMore": "Learn More"
+  },
+  "Navbar": {
+    "profile": "Profile",
+    "search": "Search",
+    "loginTitle": "Logout",
+    "settings": "settings"
   }
 }

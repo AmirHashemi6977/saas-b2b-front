@@ -19,9 +19,15 @@ export default function LanguageSwitcher() {
 
   return (
     <div className="flex gap-2">
-      <button onClick={() => changeLocale("fa")}>🇮🇷 فارسی</button>
-      <button onClick={() => changeLocale("en")}>🇺🇸 English</button>
-      <button onClick={() => changeLocale("hy")}>🇦🇲 Հայերեն</button>
+      <select
+        className="border rounded px-2 py-1"
+        defaultValue="en" // مثلا 'fa' یا 'en'
+        onChange={(e) => changeLocale(e.target.value)}
+      >
+        <option value="en">En</option>
+        <option value="fa">فارسی</option>
+        <option value="hy">Հայերեն</option>
+      </select>
     </div>
   );
 }
