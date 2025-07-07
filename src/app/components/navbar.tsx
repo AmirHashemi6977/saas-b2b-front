@@ -1,64 +1,107 @@
 "use client";
 
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  TextField,
+  Button,
+  IconButton,
+  Box,
+} from "@mui/material";
+import SettingsIcon from "@mui/icons-material/Settings";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LoginIcon from "@mui/icons-material/Login";
 import { useTranslations } from "next-intl";
 import { Link } from "i18n/navigation";
 import LanguageSwitcher from "./languageSwitcher";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import { useThemeMode } from "../components/themeContex";
 
 export default function Navbar() {
   const tHomePage = useTranslations("HomePage");
   const tLoginPage = useTranslations("LoginPage");
+  const { mode, toggleTheme } = useThemeMode();
 
   return (
-    <nav
-      className="bg-amber-500 
-    shadow-md border-b"
+    <AppBar
+      position="static"
+      sx={(theme) => ({
+        backgroundColor: theme.palette.primary.main,
+        boxShadow: 2,
+      })}
     >
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo / Title */}
-        <div className="text-xl font-semibold text-blue-600">
+      <Toolbar
+        sx={{ maxWidth: "1200px", width: "100%", margin: "0 auto", px: 2 }}
+      >
+        {/* Title */}
+        <Typography variant="inherit" sx={{ color: "#2563eb", flexShrink: 0 }}>
           {tHomePage("title")}
-        </div>
+        </Typography>
 
-        {/* Search Box (optional future input) */}
-        <div className="hidden md:block flex-1 px-4">
-          <input
-            type="text"
+        {/* Search (hidden on small screens) */}
+        <Box sx={{ flexGrow: 1, px: 2, display: { xs: "none", md: "block" } }}>
+          <TextField
+            size="small"
+            fullWidth
             placeholder={tHomePage("search") || "Search..."}
-            className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            variant="outlined"
+            sx={{ backgroundColor: "white", borderRadius: 1 }}
           />
-        </div>
+        </Box>
 
-        {/* Right Side: Buttons */}
-        <div className="flex items-center space-x-4">
-          {/* Change Language */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <IconButton onClick={toggleTheme} color="inherit">
+            {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+          </IconButton>
+        </Box>
+
+        {/* Right Side Buttons */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          {/* Language Switcher */}
           <LanguageSwitcher />
 
-          {/* Settings */}
-          <Link
-            href="/settings"
-            className="text-gray-600 hover:text-blue-600 transition text-sm"
-          >
-            ⚙️ {tHomePage("settings")}
+          {/* Settings Link */}
+          <Link href="/settings" passHref legacyBehavior>
+            <Button
+              startIcon={<SettingsIcon />}
+              sx={{ color: "gray", textTransform: "none" }}
+            >
+              {tHomePage("settings")}
+            </Button>
           </Link>
 
-          {/* Profile */}
-          <Link
-            href="/profile"
-            className="flex items-center space-x-2 text-sm text-gray-600 hover:text-blue-600 transition"
-          >
-            <span>👤</span>
-            <span>{tHomePage("profile")}</span>
+          {/* Profile Link */}
+          <Link href="/profile" passHref legacyBehavior>
+            <Button
+              startIcon={<AccountCircleIcon />}
+              sx={{ color: "gray", textTransform: "none" }}
+            >
+              {tHomePage("profile")}
+            </Button>
           </Link>
 
-          {/* Login / Logout */}
-          <Link
-            href="/login"
-            className="text-blue-500 hover:text-blue-700 text-sm border border-blue-500 px-3 py-1 rounded transition"
-          >
-            {tLoginPage("loginTitle")}
+          {/* Login/Logout */}
+          <Link href="/login" passHref legacyBehavior>
+            <Button
+              startIcon={<LoginIcon />}
+              variant="outlined"
+              sx={{
+                color: "#2563eb",
+                borderColor: "#2563eb",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#e0f2fe",
+                  borderColor: "#2563eb",
+                },
+              }}
+            >
+              {tLoginPage("loginTitle")}
+            </Button>
           </Link>
-        </div>
-      </div>
-    </nav>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }

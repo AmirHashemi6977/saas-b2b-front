@@ -1,33 +1,74 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation"; // از next/navigation
-import { useTransition } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useState, useTransition } from "react";
+import {
+  Menu,
+  MenuItem,
+  IconButton,
+  ListItemIcon,
+  Typography,
+} from "@mui/material";
+import LanguageIcon from "@mui/icons-material/Language";
+
+const languages = [
+  { code: "en", label: "English", emoji: "🇺🇸" },
+  { code: "fa", label: "فارسی", emoji: "🇮🇷" },
+  { code: "hy", label: "Հայերեն", emoji: "🇦🇲" },
+];
 
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const currentLocale = pathname.split("/")[1];
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const changeLocale = (locale: string) => {
+    handleClose();
+    if (locale === currentLocale) return;
+
     startTransition(() => {
       const segments = pathname.split("/");
-      segments[1] = locale; // فرض بر این است که locale در ابتدای مسیر است
+      segments[1] = locale;
       const newPathname = segments.join("/");
       router.replace(newPathname);
     });
   };
 
   return (
-    <div className="flex gap-2">
-      <select
-        className="border rounded px-2 py-1"
-        defaultValue="en" // مثلا 'fa' یا 'en'
-        onChange={(e) => changeLocale(e.target.value)}
+    <>
+      <IconButton onClick={handleClick} color="inherit">
+        <LanguageIcon />
+      </IconButton>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <option value="en">En</option>
-        <option value="fa">فارسی</option>
-        <option value="hy">Հայերեն</option>
-      </select>
-    </div>
+        {languages.map((lang) => (
+          <MenuItem
+            key={lang.code}
+            selected={lang.code === currentLocale}
+            onClick={() => changeLocale(lang.code)}
+          >
+            <ListItemIcon>{lang.emoji}</ListItemIcon>
+            <Typography variant="button">{lang.label}</Typography>
+          </MenuItem>
+        ))}
+      </Menu>
+    </>
   );
 }
